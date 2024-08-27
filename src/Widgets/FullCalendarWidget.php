@@ -65,7 +65,7 @@ class FullCalendarWidget extends Widget implements HasForms, HasActions
         return [];
     }
 
-    public function getgetResourceHtml(array $objectResource) {
+    public function getResourceHtml(array $objectResource) {
         return '<p>hello</p>';
     }
 }
