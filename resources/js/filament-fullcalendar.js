@@ -172,6 +172,10 @@ export default function fullcalendar({
                         }>${resourceObject.resource.title}</a>`,
                     }
                 },
+                buttonText: {
+                    //Here I make the button show French date instead of a text.
+                    today: "Aujourd'hui",
+                },
             })
 
             calendar.render()
