@@ -162,14 +162,7 @@ export default function fullcalendar({
                 },
                 resourceLabelContent: (resourceObject) => {
                     return {
-                        html: `<a style="color:${
-                            resourceObject.resource.extendedProps.gender ===
-                            'male'
-                                ? 'royalblue'
-                                : 'hotpink'
-                        }" href=/admin/agenda-employes?user_id=${
-                            resourceObject.resource.id
-                        }>${resourceObject.resource.title}</a>`,
+                        html: this.$wire.getResourceHtml(resourceObject),
                     }
                 },
                 buttonText: {
