@@ -47,7 +47,14 @@ export default function fullcalendar({
                 ...config,
                 locales,
                 eventClassNames,
-                eventContent,
+                eventContent: function (info) {
+                    return {
+                        html:
+                            info.event.title +
+                            '<br>' +
+                            (info.event.extendedProps.description || ''),
+                    }
+                },
                 eventDidMount,
                 eventWillUnmount,
                 events: (info, successCallback, failureCallback) => {
@@ -152,6 +159,18 @@ export default function fullcalendar({
                         view,
                         resource,
                     )
+                },
+                resourceLabelContent: (resourceObject) => {
+                    return {
+                        html: `<a style="color:${
+                            resourceObject.resource.extendedProps.gender ===
+                            'male'
+                                ? 'royalblue'
+                                : 'hotpink'
+                        }" href=/admin/agenda-employes?user_id=${
+                            resourceObject.resource.id
+                        }>${resourceObject.resource.title}</a>`,
+                    }
                 },
             })
 
