@@ -161,16 +161,15 @@ export default function fullcalendar({
                     )
                 },
                 resourceLabelContent: (resourceObject) => {
-                    // <a style="color:${
-                    //         resourceObject.resource.extendedProps.gender ===
-                    //         'male'
-                    //             ? 'royalblue'
-                    //             : 'hotpink'
-                    //     }" href=/admin/agenda-employes?user_id=${
-                    //         resourceObject.resource.id
-                    //     }>${resourceObject.resource.title}</a>`
                     return {
-                        html: this.$wire.getResourceHtml(resourceObject),
+                        html: `<a style="color:${
+                            resourceObject.resource.extendedProps.gender ===
+                            'male'
+                                ? 'royalblue'
+                                : 'hotpink'
+                        }" href=/admin/agenda-employes?user_id=${
+                            resourceObject.resource.id
+                        }>${resourceObject.resource.title}</a>`,
                     }
                 },
                 buttonText: {
