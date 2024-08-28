@@ -19,6 +19,7 @@
                 config: @js($this->getConfig()),
                 editable: @json($plugin->isEditable()),
                 selectable: @json($plugin->isSelectable()),
+                resourceLabelContent: {!! htmlspecialchars($this->resourceLabelContent(), ENT_COMPAT) !!},
                 eventClassNames: {!! htmlspecialchars($this->eventClassNames(), ENT_COMPAT) !!},
                 eventContent: {!! htmlspecialchars($this->eventContent(), ENT_COMPAT) !!},
                 eventDidMount: {!! htmlspecialchars($this->eventDidMount(), ENT_COMPAT) !!},

@@ -25,9 +25,11 @@ export default function fullcalendar({
     editable,
     selectable,
     eventClassNames,
+    resourceLabelContent,
     eventContent,
     eventDidMount,
     eventWillUnmount,
+    buttonText,
 }) {
     return {
         init() {
@@ -47,16 +49,18 @@ export default function fullcalendar({
                 ...config,
                 locales,
                 eventClassNames,
-                eventContent: function (info) {
-                    return {
-                        html:
-                            info.event.title +
-                            '<br>' +
-                            (info.event.extendedProps.description || ''),
-                    }
-                },
+                eventContent,
+                // eventContent: function (info) {
+                //     return {
+                //         html:
+                //             info.event.title +
+                //             '<br>' +
+                //             (info.event.extendedProps.description || ''),
+                //     }
+                // },
                 eventDidMount,
                 eventWillUnmount,
+                resourceLabelContent,
                 events: (info, successCallback, failureCallback) => {
                     this.$wire
                         .fetchEvents({
@@ -160,22 +164,7 @@ export default function fullcalendar({
                         resource,
                     )
                 },
-                resourceLabelContent: (resourceObject) => {
-                    return {
-                        html: `<a style="color:${
-                            resourceObject.resource.extendedProps.gender ===
-                            'male'
-                                ? 'royalblue'
-                                : 'hotpink'
-                        }" href=/admin/agenda-employes?user_id=${
-                            resourceObject.resource.id
-                        }>${resourceObject.resource.title}</a>`,
-                    }
-                },
-                buttonText: {
-                    //Here I make the button show French date instead of a text.
-                    today: "Aujourd'hui",
-                },
+                buttonText: buttonText,
             })
 
             calendar.render()
