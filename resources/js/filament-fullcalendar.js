@@ -166,7 +166,6 @@ export default function fullcalendar({
                 },
                 buttonText: buttonText,
             })
-
             calendar.render()
 
             window.addEventListener(
