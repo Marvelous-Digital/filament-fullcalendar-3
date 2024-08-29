@@ -15,6 +15,7 @@ import rrulePlugin from '@fullcalendar/rrule'
 import momentPlugin from '@fullcalendar/moment'
 import momentTimezonePlugin from '@fullcalendar/moment-timezone'
 import locales from '@fullcalendar/core/locales-all'
+import { compareByFieldSpecs } from '@fullcalendar/core/internal'
 
 export default function fullcalendar({
     locale,
@@ -167,6 +168,20 @@ export default function fullcalendar({
                 buttonText: buttonText,
             })
             calendar.render()
+            window.addEventListener(
+                'filament-fullcalendar--remove',
+                (event) => {
+                    const events = calendar.getEvents().filter((e) => {
+                        return (
+                            e.extendedProps.eventable_type == 'booking' &&
+                            e.extendedProps.eventable_id == event.detail.id
+                        )
+                    })
+                    events.forEach((event) => {
+                        event.remove()
+                    })
+                },
+            )
 
             window.addEventListener(
                 'filament-fullcalendar--refresh-resources',
