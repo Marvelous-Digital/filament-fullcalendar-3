@@ -166,6 +166,14 @@ export default function fullcalendar({
                     )
                 },
                 buttonText: buttonText,
+                initialView: localStorage.getItem('fullcalendar.view.' + config.key) ?? config.initialView ?? undefined,
+                initialDate: localStorage.getItem('fullcalendar.date.' + config.key) ?? config.initialDate ?? undefined,
+                datesSet: function ({start, view}) {
+                    localStorage.setItem('fullcalendar.view.' + config.key, view.type);
+                    localStorage.setItem('fullcalendar.date.' + config.key, start.toISOString());
+
+                    Livewire.dispatch('calendar-date-changed', {date: start.toISOString()});
+                },
             })
             calendar.render()
             window.addEventListener(
